@@ -193,7 +193,18 @@
     }
 
     const targetMaterial = new THREE.MeshStandardMaterial({ color: "#fa6849", emissive: "#bc321c", emissiveIntensity: 1.5, metalness: 0.2, roughness: 0.28 });
-    const ringMaterial = new THREE.MeshStandardMaterial({ color: "#d9ef65", emissive: "#788e18", emissiveIntensity: 1.2, metalness: 0.25, roughness: 0.3 });
+    const targetMarkMaterial = new THREE.MeshStandardMaterial({ color: "#d9ef65", emissive: "#788e18", emissiveIntensity: 1.2, metalness: 0.25, roughness: 0.3 });
+    const targetParts = [
+      { geometry: new THREE.SphereGeometry(0.2, 16, 12), position: [0, 0.68, 0], material: targetMaterial },
+      { geometry: new THREE.CylinderGeometry(0.085, 0.1, 0.18, 12), position: [0, 0.45, 0], material: targetMaterial },
+      { geometry: new THREE.CapsuleGeometry(0.22, 0.38, 4, 8), position: [0, 0.04, 0], material: targetMaterial },
+      { geometry: new THREE.BoxGeometry(0.44, 0.2, 0.24), position: [0, -0.48, 0], material: targetMaterial },
+      { geometry: new THREE.CapsuleGeometry(0.09, 0.42, 4, 8), position: [-0.32, 0.04, 0], rotation: [0, 0, 0.48], material: targetMaterial },
+      { geometry: new THREE.CapsuleGeometry(0.09, 0.42, 4, 8), position: [0.32, 0.04, 0], rotation: [0, 0, -0.48], material: targetMaterial },
+      { geometry: new THREE.CapsuleGeometry(0.115, 0.48, 4, 8), position: [-0.14, -0.8, 0], rotation: [0, 0, 0.06], material: targetMaterial },
+      { geometry: new THREE.CapsuleGeometry(0.115, 0.48, 4, 8), position: [0.14, -0.8, 0], rotation: [0, 0, -0.06], material: targetMaterial },
+      { geometry: new THREE.SphereGeometry(0.09, 12, 8), position: [0, 0.12, 0.2], material: targetMarkMaterial }
+    ];
     const targetMeshes = [];
     const targets = [];
     const clock = new THREE.Clock();
@@ -220,13 +231,13 @@
       const distance = 10 + Math.random() * 15;
       const offset = (Math.random() - 0.5) * distance * 1.25;
       const position = camera.position.clone().addScaledVector(forward, distance).addScaledVector(right, offset);
-      position.y = 1.7 + Math.random() * 2.4;
+      position.y = 1.5 + Math.random() * 1.1;
       const group = new THREE.Group();
       group.position.copy(position);
-      const outer = new THREE.Mesh(new THREE.TorusGeometry(0.56, 0.075, 8, 24), ringMaterial);
-      const inner = new THREE.Mesh(new THREE.TorusGeometry(0.34, 0.055, 8, 24), targetMaterial);
-      const core = new THREE.Mesh(new THREE.SphereGeometry(0.2, 16, 12), new THREE.MeshBasicMaterial({ color: "#fff4bf" }));
-      for (const mesh of [outer, inner, core]) {
+      for (const part of targetParts) {
+        const mesh = new THREE.Mesh(part.geometry, part.material);
+        mesh.position.set(...part.position);
+        if (part.rotation) mesh.rotation.set(...part.rotation);
         mesh.userData.target = group;
         mesh.castShadow = true;
         group.add(mesh);

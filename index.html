@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5f4ef">
   <meta name="description" content="海辺の公園から、遊びの街、昔ながらの路地まで。千葉県浦安市のおすすめスポットと街歩きのヒントをご紹介します。">
-  <title>浦安よりみち帖 | 海風と、街の余白。</title>
+  <title>浦安よりみち旅 | 海風と、街の余白。</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Shippori+Mincho:wght@500;600;700&display=swap" rel="stylesheet">
@@ -97,7 +97,7 @@
     .photo-caption {
       position: absolute;
       right: -15px;
-      bottom: 21px;
+      bottom: 38px;
       padding: 13px 17px;
       background: var(--sand);
       color: var(--ink);
@@ -105,6 +105,18 @@
       letter-spacing: .06em;
       transform: rotate(-2deg);
     }
+    .photo-credit {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      padding: 17px 9px 7px;
+      background: linear-gradient(transparent, #172a32c9);
+      color: white;
+      font-size: 8px;
+      line-height: 1.5;
+    }
+    .photo-credit a { color: inherit; text-underline-offset: 2px; }
     .intro-strip {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
@@ -134,7 +146,7 @@
     .spot-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px 22px; }
     .spot-card { min-width: 0; }
     .spot-card[hidden] { display: none; }
-    .spot-image { position: relative; overflow: hidden; background: #dce4df; }
+    .spot-image { position: relative; overflow: hidden; margin: 0; background: #dce4df; }
     .spot-image img { display: block; width: 100%; aspect-ratio: 1.37; object-fit: cover; transition: transform .45s ease; }
     .spot-card:hover .spot-image img { transform: scale(1.035); }
     .spot-category {
@@ -154,6 +166,18 @@
     .spot-access { color: var(--muted); font-size: 10px; }
     .map-link { color: var(--blue-dark); font-size: 10px; text-decoration: none; }
     .map-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .spot-detail { margin-top: 12px; border-top: 1px solid var(--line); }
+    .spot-detail summary { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; color: var(--blue-dark); cursor: pointer; font-size: 10px; font-weight: 700; list-style: none; }
+    .spot-detail summary::-webkit-details-marker { display: none; }
+    .spot-detail summary::after { content: "+"; font: 14px var(--mono); }
+    .spot-detail[open] summary::after { content: "−"; }
+    .detail-body { padding: 0 0 12px; color: var(--muted); font-size: 10px; line-height: 1.9; }
+    .detail-body p { min-height: 0; margin: 0; font-size: inherit; }
+    .detail-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 7px 12px; margin: 10px 0 0; padding-top: 9px; border-top: 1px solid var(--line); }
+    .detail-facts div { min-width: 0; }
+    .detail-facts dt { color: var(--blue); font-size: 9px; font-weight: 700; }
+    .detail-facts dd { margin: 2px 0 0; font-size: 9px; }
+    .detail-link { display: inline-block; margin-top: 9px; color: var(--blue-dark); font-size: 9px; text-underline-offset: 3px; }
     .plan-section { padding-block: 68px; background: #e7ece6; }
     .plan-layout { display: grid; grid-template-columns: .85fr 1.15fr; gap: 76px; align-items: start; }
     .plan-intro { position: sticky; top: 32px; }
@@ -194,7 +218,7 @@
       .hero { gap: 28px; padding-block: 43px 48px; }
       h1 { margin-block: 15px 13px; font-size: 45px; }
       .hero-copy { font-size: 12px; }
-      .photo-caption { right: -9px; bottom: 14px; padding: 10px 12px; font-size: 9px; }
+      .photo-caption { right: -9px; bottom: 31px; padding: 10px 12px; font-size: 9px; }
       .intro-item { padding: 15px 10px; }
       .intro-item strong { font-size: 12px; }
       .intro-item span { font-size: 9px; }
@@ -224,14 +248,13 @@
 </head>
 <body>
   <header class="wrap topbar">
-    <a class="brand" href="#top" aria-label="浦安よりみち帖 ホーム">
+    <a class="brand" href="#top" aria-label="浦安よりみち旅 ホーム">
       <span class="brand-mark" aria-hidden="true">浦</span>
-      <span class="brand-name">浦安よりみち帖</span>
+      <span class="brand-name">浦安よりみち旅</span>
     </a>
     <nav class="nav" aria-label="メインナビゲーション">
       <a href="#spots">おすすめスポット</a>
       <a href="#plan">街歩きモデルコース</a>
-      <a href="fps.html">FPSゲーム ↗</a>
       <a class="nav-cta" href="#access">浦安へのアクセス ↗</a>
     </nav>
   </header>
@@ -248,8 +271,9 @@
         </div>
       </div>
       <div class="hero-visual">
-        <img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&amp;fit=crop&amp;w=1400&amp;q=85" alt="陽光を受けてきらめく穏やかな海" fetchpriority="high">
+        <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fc/View_of_Kasai_Rinkai_Park_with_Tokyo_SkyTree.jpg/960px-View_of_Kasai_Rinkai_Park_with_Tokyo_SkyTree.jpg" alt="浦安市の海岸から葛西臨海公園と東京スカイツリーを望む景色" fetchpriority="high">
         <span class="photo-caption">A LITTLE ESCAPE BY THE BAY</span>
+        <span class="photo-credit"><a href="https://commons.wikimedia.org/wiki/File:View_of_Kasai_Rinkai_Park_with_Tokyo_SkyTree.jpg">写真: 掬茶 / Wikimedia Commons</a> · <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a></span>
       </div>
     </section>
 
@@ -276,75 +300,128 @@
       </div>
       <div class="spot-grid" id="spot-grid" aria-live="polite">
         <article class="spot-card" data-category="nature">
-          <div class="spot-image">
-            <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="水辺と緑が広がる公園の風景" loading="lazy">
-            <span class="spot-category">公園・自然</span>
-          </div>
+          <figure class="spot-image">
+            <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/7/79/Urayasu_city_sports_park_-_aerial.jpg/960px-Urayasu_city_sports_park_-_aerial.jpg" alt="浦安市運動公園の野球場を上空から撮影した写真" loading="lazy" decoding="async">
+            <span class="spot-category">公園・スポーツ</span>
+            <figcaption class="photo-credit"><a href="https://commons.wikimedia.org/wiki/File:Urayasu_city_sports_park_-_aerial.jpg">写真: 国土地理院 / Wikimedia Commons</a> · 国土交通省「国土画像情報（カラー空中写真）」</figcaption>
+          </figure>
           <div class="spot-info">
-            <div class="spot-meta"><span>01 / SEASIDE</span><span>新浦安エリア</span></div>
-            <h3>浦安市総合公園</h3>
-            <p>東京湾を望む開放的な公園。芝生の上でのんびり過ごしたい日に。</p>
-            <div class="spot-bottom"><span class="spot-access">JR新浦安駅からバス</span><a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=浦安市総合公園" target="_blank" rel="noreferrer">地図を見る ↗</a></div>
+            <div class="spot-meta"><span>01 / OUTDOOR</span><span>舞浜エリア</span></div>
+            <h3>浦安市運動公園</h3>
+            <p>舞浜にある市のスポーツ施設。試合やイベントの日に、屋外で過ごしたい人に。</p>
+            <div class="spot-bottom"><span class="spot-access">JR舞浜駅から徒歩約10分</span><a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=浦安市運動公園" target="_blank" rel="noreferrer">地図を見る ↗</a></div>
+            <details class="spot-detail">
+              <summary>見どころ・訪問のヒント</summary>
+              <div class="detail-body">
+                <p>運動公園野球場は人工芝の球場で、センター122メートル・両翼98メートル。利用には予約と料金が必要です。試合観戦や施設利用の前に、営業時間と当日の運営状況を確認しましょう。</p>
+                <dl class="detail-facts"><div><dt>最寄り駅</dt><dd>JR京葉線・舞浜駅から徒歩10分</dd></div><div><dt>バス</dt><dd>「運動公園」下車</dd></div><div><dt>利用時間</dt><dd>季節・曜日で異なる</dd></div><div><dt>所在地</dt><dd>浦安市舞浜2番地27</dd></div></dl>
+                <a class="detail-link" href="https://www.city.urayasu.lg.jp/shisetsu/sports/baseball/1018090.html" target="_blank" rel="noreferrer">浦安市公式・運動公園野球場案内 ↗</a>
+              </div>
+            </details>
           </div>
         </article>
         <article class="spot-card" data-category="nature">
-          <div class="spot-image">
-            <img src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="水辺に沈む夕日の穏やかな風景" loading="lazy">
+          <figure class="spot-image">
+            <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fc/View_of_Kasai_Rinkai_Park_with_Tokyo_SkyTree.jpg/960px-View_of_Kasai_Rinkai_Park_with_Tokyo_SkyTree.jpg" alt="浦安市の海岸から葛西臨海公園と東京スカイツリーを望む実際の景色" loading="lazy" decoding="async">
             <span class="spot-category">公園・自然</span>
-          </div>
+            <figcaption class="photo-credit"><a href="https://commons.wikimedia.org/wiki/File:View_of_Kasai_Rinkai_Park_with_Tokyo_SkyTree.jpg">写真: 掬茶 / Wikimedia Commons</a> · <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a></figcaption>
+          </figure>
           <div class="spot-info">
-            <div class="spot-meta"><span>02 / SUNSET</span><span>海辺エリア</span></div>
-            <h3>浦安海岸・日の出エリア</h3>
-            <p>海沿いの景色を楽しめるエリア。夕暮れどきの散歩にもおすすめ。</p>
-            <div class="spot-bottom"><span class="spot-access">JR新浦安駅からバス</span><a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=浦安海岸+日の出" target="_blank" rel="noreferrer">地図を見る ↗</a></div>
+            <div class="spot-meta"><span>02 / BAY VIEW</span><span>海辺エリア</span></div>
+            <h3>浦安の海辺</h3>
+            <p>海の向こうに葛西臨海公園やスカイツリーを望む、開放感のある沿岸風景。</p>
+            <div class="spot-bottom"><span class="spot-access">行き先によりバス利用</span><a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=浦安市+海岸" target="_blank" rel="noreferrer">地図を見る ↗</a></div>
+            <details class="spot-detail">
+              <summary>見どころ・訪問のヒント</summary>
+              <div class="detail-body">
+                <p>浦安の海岸から対岸の景色を眺めるひとときが魅力。写真は浦安市沿岸から撮影された実景です。海岸沿いは場所により立ち入り条件が異なるため、現地の案内に従ってください。</p>
+                <dl class="detail-facts"><div><dt>おすすめ</dt><dd>景色を眺める・夕方の散歩</dd></div><div><dt>注意</dt><dd>遊泳施設ではありません</dd></div></dl>
+              </div>
+            </details>
           </div>
         </article>
         <article class="spot-card" data-category="culture">
-          <div class="spot-image">
-            <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="昔ながらの日本の街並み" loading="lazy">
+          <figure class="spot-image">
+            <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/1/17/Urayasu_City_Folk_Museum_01.jpg/960px-Urayasu_City_Folk_Museum_01.jpg" alt="浦安市郷土博物館の屋外展示場にある三軒長屋" loading="lazy" decoding="async">
             <span class="spot-category">歴史・文化</span>
-          </div>
+            <figcaption class="photo-credit"><a href="https://commons.wikimedia.org/wiki/File:Urayasu_City_Folk_Museum_01.jpg">写真: Suikotei / Wikimedia Commons</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></figcaption>
+          </figure>
           <div class="spot-info">
-            <div class="spot-meta"><span>03 / OLD TOWN</span><span>元町エリア</span></div>
+            <div class="spot-meta"><span>03 / LOCAL HISTORY</span><span>猫実エリア</span></div>
             <h3>浦安市郷土博物館</h3>
-            <p>漁師町として栄えた浦安の暮らしや歴史を、展示や街並みでたどる。</p>
-            <div class="spot-bottom"><span class="spot-access">東京メトロ浦安駅から徒歩圏</span><a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=浦安市郷土博物館" target="_blank" rel="noreferrer">地図を見る ↗</a></div>
+            <p>漁師町時代の浦安を、展示室と昔の町並みを再現した屋外展示場で知る。</p>
+            <div class="spot-bottom"><span class="spot-access">浦安駅からバスで「市役所前」</span><a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=浦安市郷土博物館" target="_blank" rel="noreferrer">地図を見る ↗</a></div>
+            <details class="spot-detail">
+              <summary>見どころ・開館情報</summary>
+              <div class="detail-body">
+                <p>テーマ展示室では漁師町の歴史や埋め立て後のまちづくりを紹介。屋外展示場「浦安のまち」では、三軒長屋や漁師の家など、昔の町並みを歩いて見学できます。</p>
+                <dl class="detail-facts"><div><dt>開館時間</dt><dd>9:30〜17:00</dd></div><div><dt>入館料</dt><dd>無料</dd></div><div><dt>休館日</dt><dd>月曜・館内整理日など</dd></div><div><dt>所在地</dt><dd>浦安市猫実一丁目2番7号</dd></div></dl>
+                <p>浦安駅から京成バス千葉ウエストで「市役所前」下車、徒歩4分。詳しい乗り場や休館日は公式案内をご確認ください。</p>
+                <a class="detail-link" href="https://www.city.urayasu.lg.jp/kanko/kyodo/index.html" target="_blank" rel="noreferrer">浦安市公式・郷土博物館案内 ↗</a>
+              </div>
+            </details>
           </div>
         </article>
         <article class="spot-card" data-category="culture">
-          <div class="spot-image">
-            <img src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="街並みをやわらかく照らす夕暮れの空" loading="lazy">
+          <figure class="spot-image">
+            <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b1/Chiba_Prefectural_Road_Route_242_%28Urayasu_Station_Line%29_in_Nekomi_4-chome%2C_Urayasu_City.jpg/960px-Chiba_Prefectural_Road_Route_242_%28Urayasu_Station_Line%29_in_Nekomi_4-chome%2C_Urayasu_City.jpg" alt="浦安市猫実四丁目、柳通りから浦安駅前交差点を撮影した街路" loading="lazy" decoding="async">
             <span class="spot-category">歴史・文化</span>
-          </div>
+            <figcaption class="photo-credit"><a href="https://commons.wikimedia.org/wiki/File:Chiba_Prefectural_Road_Route_242_(Urayasu_Station_Line)_in_Nekomi_4-chome,_Urayasu_City.jpg">写真: 小石川人晃 / Wikimedia Commons</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></figcaption>
+          </figure>
           <div class="spot-info">
-            <div class="spot-meta"><span>04 / WALK</span><span>浦安駅周辺</span></div>
-            <h3>浦安の旧市街さんぽ</h3>
-            <p>路地や寺社をめぐりながら、昔の漁師町の面影を探してみよう。</p>
-            <div class="spot-bottom"><span class="spot-access">東京メトロ浦安駅周辺</span><a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=浦安市+元町+寺社" target="_blank" rel="noreferrer">地図を見る ↗</a></div>
+            <div class="spot-meta"><span>04 / OLD TOWN WALK</span><span>猫実・浦安駅周辺</span></div>
+            <h3>猫実・浦安駅まち歩き</h3>
+            <p>浦安駅から猫実方面へ。地元の商店や寺社をめぐりながら街の表情を探す。</p>
+            <div class="spot-bottom"><span class="spot-access">東京メトロ東西線・浦安駅</span><a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=浦安市猫実+柳通り" target="_blank" rel="noreferrer">地図を見る ↗</a></div>
+            <details class="spot-detail">
+              <summary>歩き方のヒント</summary>
+              <div class="detail-body">
+                <p>写真は猫実四丁目の柳通り付近で撮影されたもの。浦安駅を起点に、商店街や寺社に立ち寄りながら、自分のペースで歩くのがおすすめです。住宅地では静かに散策し、歩道や横断歩道を利用しましょう。</p>
+                <dl class="detail-facts"><div><dt>おすすめ</dt><dd>街の雰囲気を味わう散歩</dd></div><div><dt>所要時間</dt><dd>寄り道に合わせて調整</dd></div></dl>
+              </div>
+            </details>
           </div>
         </article>
         <article class="spot-card" data-category="leisure">
-          <div class="spot-image">
-            <img src="https://images.unsplash.com/photo-1513883049090-d0b7439799bf?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="遊園地のカラフルなアトラクション" loading="lazy">
+          <figure class="spot-image">
+            <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a8/Tokyo_Disneyland_004.jpg/960px-Tokyo_Disneyland_004.jpg" alt="東京ディズニーランドの園内風景" loading="lazy" decoding="async">
             <span class="spot-category">レジャー</span>
-          </div>
+            <figcaption class="photo-credit"><a href="https://commons.wikimedia.org/wiki/File:Tokyo_Disneyland_004.jpg">写真: Emran Kassim / Wikimedia Commons</a> · <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a></figcaption>
+          </figure>
           <div class="spot-info">
             <div class="spot-meta"><span>05 / PLAY</span><span>舞浜エリア</span></div>
             <h3>東京ディズニーリゾート</h3>
             <p>舞浜を代表するテーマパーク。チケットや営業情報は公式サイトで確認を。</p>
             <div class="spot-bottom"><span class="spot-access">JR舞浜駅すぐ</span><a class="map-link" href="https://www.tokyodisneyresort.jp/" target="_blank" rel="noreferrer">公式サイト ↗</a></div>
+            <details class="spot-detail">
+              <summary>計画のポイント</summary>
+              <div class="detail-body">
+                <p>東京ディズニーランドと東京ディズニーシーの2つのパークがあります。行きたいパークを決めてから、日付指定チケットや当日の運営情報を公式サイトで確認して計画を。</p>
+                <dl class="detail-facts"><div><dt>最寄り駅</dt><dd>JR京葉線・舞浜駅</dd></div><div><dt>事前確認</dt><dd>チケット・営業時間・運営状況</dd></div></dl>
+                <a class="detail-link" href="https://www.tokyodisneyresort.jp/" target="_blank" rel="noreferrer">東京ディズニーリゾート公式サイト ↗</a>
+              </div>
+            </details>
           </div>
         </article>
         <article class="spot-card" data-category="shopping">
-          <div class="spot-image">
-            <img src="https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="お店が並ぶにぎやかな商業エリア" loading="lazy">
+          <figure class="spot-image">
+            <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2f/Ikspiari_Level_1_2013.jpg/960px-Ikspiari_Level_1_2013.jpg" alt="イクスピアリの館内風景" loading="lazy" decoding="async">
             <span class="spot-category">ショッピング</span>
-          </div>
+            <figcaption class="photo-credit"><a href="https://commons.wikimedia.org/wiki/File:Ikspiari_Level_1_2013.jpg">写真: Wpcpey / Wikimedia Commons</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></figcaption>
+          </figure>
           <div class="spot-info">
             <div class="spot-meta"><span>06 / SHOPPING</span><span>舞浜エリア</span></div>
             <h3>イクスピアリ</h3>
-            <p>ショップやレストランが集まる複合施設。食事や買い物の寄り道に。</p>
+            <p>ショップやレストラン、映画館が集まる複合施設。食事や買い物の寄り道に。</p>
             <div class="spot-bottom"><span class="spot-access">JR舞浜駅すぐ</span><a class="map-link" href="https://www.ikspiari.com/" target="_blank" rel="noreferrer">公式サイト ↗</a></div>
+            <details class="spot-detail">
+              <summary>楽しみ方・訪問のヒント</summary>
+              <div class="detail-body">
+                <p>個性豊かなショップやレストラン、映画館などがそろい、食事や買い物をまとめて楽しめます。東京ディズニーリゾートの前後に立ち寄る場合は、営業時間と営業店舗を公式サイトで確認してください。</p>
+                <dl class="detail-facts"><div><dt>最寄り駅</dt><dd>JR舞浜駅すぐ</dd></div><div><dt>おすすめ</dt><dd>食事・買い物・映画</dd></div></dl>
+                <a class="detail-link" href="https://www.ikspiari.com/" target="_blank" rel="noreferrer">イクスピアリ公式サイト ↗</a>
+              </div>
+            </details>
           </div>
         </article>
       </div>
@@ -379,8 +456,8 @@
   </main>
 
   <footer class="wrap footer">
-    <div class="footer-row"><span>URAYASU / A LITTLE CITY GUIDE</span><span>© 2026 浦安よりみち帖</span></div>
-    <p class="footer-note">掲載情報は訪問前に各施設の公式情報をご確認ください。写真はイメージです。</p>
+    <div class="footer-row"><span>URAYASU / A LITTLE CITY GUIDE</span><span>© 2026 浦安よりみち旅</span></div>
+    <p class="footer-note">施設の営業日・利用条件は変更されることがあります。訪問前に公式情報をご確認ください。写真は各写真リンク先のライセンスに基づき掲載し、レイアウトに合わせて表示をトリミングしています。</p>
   </footer>
 
   <script>
